@@ -25,7 +25,9 @@ jobs:
       - uses: actions/configure-pages@v5
       - name: Extract website
         run: |
-          unzip -q site.zip -d _site
+          cat site-full-book.zip.part01 site-full-book.zip.part02 site-full-book.zip.part03 > /tmp/site.zip
+          echo "9e3e022627c33f02fe5dbe754f52c32496c267e3bd8c5cbd98f02cce97a2f91f  /tmp/site.zip" | sha256sum -c -
+          unzip -q /tmp/site.zip -d _site
           test -f _site/index.html
           test -f _site/books.json
       - uses: actions/upload-pages-artifact@v4
